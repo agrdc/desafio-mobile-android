@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MarvelApi {
-    @GET("characters")
+    @GET("/v1/public/characters")
     suspend fun getCharacters(
         @Query("offset") offset: Int,
         @Query("apikey") apikey: String = API_KEY,
