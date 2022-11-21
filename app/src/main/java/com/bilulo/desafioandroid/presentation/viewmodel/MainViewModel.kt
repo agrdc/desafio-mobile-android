@@ -19,10 +19,10 @@ class MainViewModel(private val getMarvelCharactersUsecase: GetMarvelCharactersU
             stateMutableLiveData.postValue(MainActivityState.LoadingState())
             when (val response = getMarvelCharactersUsecase.execute(offset)) {
                 is ApiResult.Error -> {
-
+                    TODO()
                 }
                 is ApiResult.Success -> {
-
+                    TODO()
                 }
             }
         }
