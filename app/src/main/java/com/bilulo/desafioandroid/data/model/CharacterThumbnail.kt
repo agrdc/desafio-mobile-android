@@ -8,24 +8,24 @@ data class CharacterThumbnail(
     @SerializedName("extension")
     val extension: String?,
 
-    val extensionEnum: ThumbnailExtension? = ThumbnailExtension.fromValue(extension)
 )
 
 enum class ThumbnailExtension(val value: String?) {
     GIF("gif"),
-    Jpg("jpg");
+    Jpg("jpg"),
+    None("");
 
     companion object {
-        fun fromValue(value: String?): ThumbnailExtension? = when (value) {
+        fun fromValue(value: String?): ThumbnailExtension = when (value) {
             "gif" -> GIF
             "jpg" -> Jpg
-            else  -> null
+            else  -> None
         }
 
-        fun isGif(value: String): Boolean = when (value) {
-            "gif" -> true
-            "jpg" -> false
-            else  -> throw IllegalArgumentException()
+        fun isJpg(thumbnailExtension: ThumbnailExtension): Boolean = when (thumbnailExtension) {
+            GIF -> false
+            Jpg -> true
+            else  -> false
         }
     }
 }

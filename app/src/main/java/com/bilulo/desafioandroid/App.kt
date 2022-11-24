@@ -5,6 +5,8 @@ import com.bilulo.desafioandroid.data.IMarvelDatasource
 import com.bilulo.desafioandroid.data.MarvelDatasource
 import com.bilulo.desafioandroid.data.MarvelRepository
 import com.bilulo.desafioandroid.data.api.retrofit.RetrofitClient
+import com.bilulo.desafioandroid.domain.FormatCharacterImageUrlUsecase
+import com.bilulo.desafioandroid.domain.GetCharactersCarouselItemsUsecase
 import com.bilulo.desafioandroid.domain.GetMarvelCharactersUsecase
 import com.bilulo.desafioandroid.presentation.viewmodel.MainViewModel
 import org.koin.android.ext.koin.androidContext
@@ -22,8 +24,10 @@ class App : Application() {
     private fun setupKoin() {
         val module = module {
             viewModel {
-                MainViewModel(getMarvelCharactersUsecase = get())
+                MainViewModel(getMarvelCharactersUsecase = get(), getCharactersCarouselItemsUsecase = get())
             }
+            factory { GetCharactersCarouselItemsUsecase(formatCharacterImageUrlUsecase = get()) }
+            factory { FormatCharacterImageUrlUsecase() }
             factory { GetMarvelCharactersUsecase(repository = get()) }
             factory { MarvelRepository(datasource = get()) }
             single<IMarvelDatasource> { MarvelDatasource(retrofitClient = get()) }

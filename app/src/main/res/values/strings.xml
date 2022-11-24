@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Desafio Android</string>
+    <string name="api_error">Ocorreu um erro na requisição.</string>
 </resources>
